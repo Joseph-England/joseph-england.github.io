@@ -1,79 +1,25 @@
-/* Joseph England — site stylesheet.
-   Every visual decision on the site traces back to the :root block below.
-   To redesign, edit :root and nothing else. */
-
-/* 1. Design tokens ------------------------------------------------------- */
-
 :root {
-  /* Colors */
-  --color-bg: #faf8f4;             /* page background: an off-white, easier on the eyes than pure white */
-  --color-ink: #20242b;            /* body text (contrast on background: 14.7:1) */
-  --color-muted: #5a6270;          /* dates, captions, artists, footer (5.8:1) */
-  --color-accent: #176a52;         /* links, current-page marker (6.2:1) */
 
-  /* Typefaces. Two roles. See assets/fonts/README.md to self-host the
-     intended faces; until then these system stacks match their character. */
+  --color-bg: #faf8f4;
+  --color-ink: #20242b;
+  --color-muted: #5a6270;
+  --color-accent: #176a52;
+
   --font-body: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
   --font-heading: system-ui, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
-  /* Type scale: base 1.0625rem (17px), each step 1.333 times the last
-     (a perfect fourth), so heading levels read as clearly distinct. */
-  --size-small: 0.797rem; /* base ÷ 1.333 */
-  --size-body: 1.0625rem; /* base */
-  --size-h3: 1.416rem;    /* base × 1.333 */
-  --size-h2: 1.888rem;    /* base × 1.333² */
-  --size-h1: 2.517rem;    /* base × 1.333³ */
+  --size-small: 0.797rem;
+  --size-body: 1.0625rem;
+  --size-h3: 1.416rem;
+  --size-h2: 1.888rem;
+  --size-h1: 2.517rem;
 
-  /* Spacing steps and text measure */
-  --space-1: 0.5rem; /* within an entry or list */
-  --space-2: 1rem;   /* between elements in a section */
-  --space-3: 2.5rem; /* between sections */
-  --space-4: 4rem;   /* page top and bottom, footer gap */
-  --measure: 66ch;   /* text column width, roughly 60–70 characters */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 2.5rem;
+  --space-4: 4rem;
+  --measure: 66ch;
 }
-
-/* Self-hosted fonts, deliberately commented out. Follow the instructions in
-   assets/fonts/README.md, then remove the comment markers around this block
-   and put "Source Serif 4" and "Source Sans 3" first in the two font-family
-   lines above.
-
-@font-face {
-  font-family: "Source Serif 4";
-  src: url("fonts/SourceSerif4-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Serif 4";
-  src: url("fonts/SourceSerif4-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "Source Serif 4";
-  src: url("fonts/SourceSerif4-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("fonts/SourceSans3-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans 3";
-  src: url("fonts/SourceSans3-Semibold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-}
-*/
-
-/* 2. Reset ---------------------------------------------------------------- */
 
 *,
 *::before,
@@ -97,8 +43,6 @@ img {
   height: auto;
   display: block;
 }
-
-/* 3. Base typography ------------------------------------------------------ */
 
 body {
   background: var(--color-bg);
@@ -132,8 +76,6 @@ a {
   color: var(--color-accent);
   text-underline-offset: 0.15em;
 }
-
-/* 4. Layout --------------------------------------------------------------- */
 
 body {
   max-width: var(--measure);
@@ -172,7 +114,6 @@ nav a {
   padding-bottom: 2px;
 }
 
-/* Current page: the link marked aria-current in each page's nav. */
 nav a[aria-current] {
   border-bottom: 2px solid var(--color-accent);
 }
@@ -194,8 +135,6 @@ footer {
   font-size: var(--size-small);
 }
 
-/* 5. Components ----------------------------------------------------------- */
-
 figcaption {
   margin-top: var(--space-1);
   font-family: var(--font-heading);
@@ -203,10 +142,6 @@ figcaption {
   color: var(--color-muted);
 }
 
-/* Overrides "article > * + *" above for the tighter gap between an
-   entry's own lines (title, org, meta, description); the class selector
-   outweighs the element selector, so this wins without touching that
-   rule, which still spaces sibling entries apart. */
 .entry > * + * {
   margin-top: var(--space-1);
 }
@@ -235,8 +170,6 @@ figcaption {
   margin-top: var(--space-1);
 }
 
-/* CV page: the contact and PDF line under the heading, and the
-   "last updated" note at the bottom. */
 .cv-links {
   margin-top: var(--space-1);
   font-family: var(--font-heading);
@@ -248,12 +181,9 @@ figcaption {
   color: var(--color-muted);
 }
 
-/* Fun pages: the artist after each song title. */
 .song-artist {
   color: var(--color-muted);
 }
-
-/* 6. Utility and accessibility -------------------------------------------- */
 
 .skip-link {
   position: absolute;
@@ -268,8 +198,6 @@ figcaption {
   transform: none;
 }
 
-/* Hidden on screen but read by screen readers and search engines; used
-   for the home page's h1, since the name already shows in the header. */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -281,7 +209,6 @@ figcaption {
   white-space: nowrap;
 }
 
-/* Takes up no room, so what follows it shouldn't get a gap either. */
 main > .visually-hidden + * {
   margin-top: 0;
 }
